@@ -48,18 +48,21 @@ function handleEventBroadcast(type, broadcast) {
     );
 }
 
-function handleConnectionStateChange(isConnected) {
-    if (!isConnected) return;
+// function handleConnectionStateChange(isConnected) {
+//     if (!isConnected) return;
 
-    OneSignal.configure();
-    NetInfo.isConnected.removeEventListener('connectionChange', handleConnectionStateChange);
-}
+//     OneSignal.configure();
+//     NetInfo.isConnected.removeEventListener('connectionChange', handleConnectionStateChange);
+// }
 
-NetInfo.isConnected.fetch().then(isConnected => {
-    if (isConnected) return OneSignal.configure();
-    NetInfo.isConnected.addEventListener('connectionChange', handleConnectionStateChange);
-}).catch((...args) => console.warn("Error: ", args));
+// NetInfo.isConnected.fetch().then(isConnected => {
+//     if (isConnected) return OneSignal.configure();
+//     NetInfo.isConnected.addEventListener('connectionChange', handleConnectionStateChange);
+// }).catch((...args) => console.warn("Error: ", args));
 
+// https://github.com/facebook/react-native/issues/18776
+
+OneSignal.configure();
 
 export default class OneSignal {
 
